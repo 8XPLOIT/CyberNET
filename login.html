@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="theme-color" content="#F0F3F4">
+<meta content='Kapten Nemo' name='Author' />
+<title>Login 8XPLOIT</title>
+<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<link rel="stylesheet" href="css/fontawesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script  src="js/custom.js"></script>
+</head>
+<body>
+<div class="container">
+  <header class="main-header">
+    <div class="top-border"></div>
+    <img src="img/logo.png" style="border-radius: 5px; width:100%; max-width: 300px; height:auto;"/>
+    <h1 class="appbar-title"> </h1>
+<span class="appbar-description shine"> </span>
+<!--<span class="appbar-description">Layanan Internet Unlimited</span>-->
+  </header>
+<hr class="separator separator--line"/>
+  <main>
+    <form name="login" class="login-form" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="false" />
+        <input id="username" class="" name="username" type="text" autocomplete="off" required/>
+        <input id="password" class="password" name="password" placeholder="Ketik password disini" autocomplete="off" type="hidden" required />
+    $(if error)
+    <div id="infoError" class="infoError">
+      <script type="text/javascript">
+        var error = "$(error)";
+        var error1 = "user $(username) has reached uptime limit";
+        var error2 = "user $(username) has reached traffic limit";
+        var error3 = "no valid profile found";
+        var error4 = "invalid username or password";
+        var error5 = "user &lt;$(username)&gt; not found";
+        var error6 = "simultaneous session limit reached";
+        var error7 = "user $(username) is not allowed to log in from this MAC address";
+        var error8 = "no more sessions are allowed for user $(username)";
+        var error9 = "already authorizing, retry later";
+        if (error == error1 || error == error2 || error == error3){
+          window.location.href = "expired.html";
+        } else if (error == error4){
+          window.location.href = "invalid.html";
+        } else if (error == error5){
+          document.getElementById("infoError").innerHTML = '<i class="fa fa-info-circle"></i><b> KODE VOUCHER TIDAK DITEMUKAN! </b>';
+        } else if (error == error6 || error == error7){
+          window.location.href = "macstop.html";
+          } else if (error == error8){
+          window.location.href = "xallowed.html";
+        } else if (error == error9){
+          document.getElementById("infoError").innerHTML = '<i class="fa fa-info-circle"></i><b> KLIK LOGIN SATU KALI SAJA BOSSS! </b>';
+        } else {
+          document.getElementById("infoError").innerHTML = "$(error)";
+        }
+      </script>
+  </div>
+    $(endif)
+    <button class="btn" type="submit"><i class="fa fa-sign-in"></i> LOGIN</button>
+    $(if trial == 'yes')
+    $(endif)
+    </form>
+<div class="box">
+  <div class="thead">
+              <div><i class="fa fa-clock-o"></i> AKTIF</div>
+              <div><i class="fa fa-hourglass-half"></i> KUOTA</div>
+              <div><i class="fa fa-ticket"></i> HARGA</a>
+              </div>
+            </div>
+            <div class="stats">
+              <div>3 Jam</div>
+              <div>∞ 2Mbps</div>
+              <div>2.000</a>
+              </div>
+            </div>
+            <div class="stats">
+              <div>6 Jam</div>
+              <div>∞ 2Mbps</div>
+              <div>3.000</a>
+              </div>
+            </div>
+            <div class="stats">
+              <div>12 Jam</div>
+              <div>∞ 2Mbps</div>
+              <div>5.000</a>
+              </div>
+            </div>
+            <div class="stats">
+              <div>24 Jam</div>
+              <div>∞ 2Mbps</div>
+              <div>6.000</a>
+              </div>
+            </div>
+            <div class="stats">
+              <div>7 Hari</div>
+              <div>∞ 2Mbps</div>
+              <div>15.000</a>
+              </div>
+            </div>
+  </main>
+  <!-- CREDIT DISINI -->
+  <footer>
+          <table class="table">
+          <caption style="font-size: 12px;color:#ffffff;text-shadow: 1px 0 1px #333;margin:0 auto;line-height:1.1em;"><i class="fa fa-whatsapp"></i> 082339800565 / 081239290573</caption>
+          <caption style="font-size: 10px;color:#ffffff;text-shadow: 1px 0 1px #333;margin:0 auto;line-height:1.0em;">Beli voucher melalui whatsApp diatas atau langsung ke rumah, Terimakasih.</caption>
+  </footer>
+  <!-- CREDIT DISINI -->
+</div>
+$(if chap-id)
+<form name="sendin" action="$(link-login-only)" method="post">
+<input type="hidden" name="username" />
+<input type="hidden" name="password" />
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="false" />
+</form>
+<script type="text/javascript" src="md5.js"></script>
+<script type="text/javascript">
+function doLogin() {
+  document.sendin.username.value = document.login.username.value;
+  document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+  document.sendin.submit();
+  return false;
+}
+</script>
+$(endif)
+<script type="text/javascript">
+var host = window.location.hostname;
+document.title = "8XPLOIT", window.onload = voucher();
+function kodevoucher() {
+    var e = document.getElementById("username").value //.toLowerCase(); //.toUpperCase();
+    document.getElementById("username").value = e, document.getElementById("password").value = e
+}
+function voucher() {
+    document.getElementById("username").oninput = kodevoucher, document.getElementById("username").placeholder = "Ketik kode voucher disini", document.getElementById("password").type = "hidden"
+}
+function member() {
+    document.getElementById("username").oninput = "", document.getElementById("username").placeholder = "Ketik username disini", document.getElementById("password").type = "password"
+}
+</script>
+<script>
+$(document).ready(function() {
+  window.setTimeout(function() {
+    $(".infoError").fadeTo(1000, 0).slideUp(1000, function() {
+      $(this).remove();
+    });
+  }, 13000);
+});
+</script>
+
+<script> 
+$(document).ready(function() { 
+  window.setTimeout(function() { 
+    $(".popup").fadeTo(1000, 0).slideUp(2000, function() { 
+      $(this).remove(); 
+    }); 
+  }, 30000);
+}); 
+</script> 
+<div id="popup" class="popup"> 
+        <span class="close-btn" onclick="hidePopup()"><i class="fa fa-times-circle blink"></i></span></br> 
+        <script>
+            var NemoADS = [
+              "<span style='color:black';>Top Up E-Wallet, Pulsa Listrik, Paket Data dan Masa Aktif. <text style='color:red';><b> Top Up Dana, Gopay, Shopeepay, Bank</b></text> dll. Transaksi Mulai Jam <text style='color:red';><b>9 Pagi</b></text> Sampai Dengan Jam <text style='color:red';><b>9 Malam!</b></text> Hari Kiamat Hanya Buka 1 Jam Saja. Dajjal Keluar Kami Tutup!</span>",
+              "<span style='color:black';>Bonus Voucher Gratis! Kumpulkan <text style='color:red';><b>10 Kertas Voucher Bekas</b></text> Kemudian Tukar Ke Rumah Dengan <text style='color:red';><b>Satu Voucher WiFi Lagi!</b></text> Promo Ini Berlaku Hingga <text style='color:red';><b>Matahari Terbit Dari Barat</b></text> dan Dajjal Serta Nabi Isa Turun Ke Bumi.</span>",
+              "<span style='color:black';>Sewa HP Bebas Main Game Online! <text style='color:red';><b>Rp.4000,- Per Jam</b></text> Sepuasnya Sampai Lumpuh! Tersedia Game <text style='color:red';><b>Free Fire, Mobile Legends, </b></text>Rental Game PS3 Mulai Dari <text style='color:red';><b>Rp.6000,-</b></text> Per Jam. Buka Jam <text style='color:red';><b>9 Pagi</b></text> Sampai Jam <text style='color:red';><b>9 Malam!</b></text></span>"
+              ];
+            function tampilkanNemoADS() {
+              var ADS = NemoADS[Math.floor(Math.random() * NemoADS.length)];
+              document.getElementById('NemoADS').innerHTML = ADS;
+            }
+            window.onload = tampilkanNemoADS;
+          </script>
+          <div id="NemoADS"></div>
+</br><p style="font-weight: bold; font-size: 10px;color:#808080;margin:0 auto;line-height:1.2em;"> Klik tanda <i class="fa fa-times-circle"></i> untuk tutup iklan ini atau usap layar kebawah <i class="fa fa-arrow-down"></i> untuk promo lain.</p>
+</div> 
+    <script> 
+        function showPopup() { 
+            document.getElementById("popup").style.display = "block"; 
+        } 
+        function hidePopup() { 
+            document.getElementById("popup").style.display = "none"; 
+        } 
+    </script> 
+
+</body>
+</html>
